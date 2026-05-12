@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get started with Digital Wellington</title>
+    <style>
+        /* CSS VARIABLES for easy editing */
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-main: #ffffff;
+            --accent: #d4af37; /* Premium Gold */
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow: hidden; /* Prevents scroll during entry animation */
+        }
+
+        /* SPLIT LAYOUT */
+        .wrapper {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            opacity: 0;
+            animation: fadeInPage 1.2s ease forwards;
+        }
+
+        /* LEFT SIDE - IMAGE */
+        .image-side {
+            flex: 1;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('me2.jpeg') center/cover no-repeat;
+            position: relative;
+            clip-path: inset(0 100% 0 0); /* Animation starting point */
+            animation: revealImage 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.5s;
+        }
+
+        /* RIGHT SIDE - CONTENT */
+        .content-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: var(--bg-color);
+        }
+
+        .inner-content {
+            max-width: 400px;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUp 1s ease forwards 1.2s;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        p {
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* INTERACTIVE LINKS */
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+            transform: translateX(10px);
+            border-color: var(--text-main);
+        }
+
+        .nav-link span {
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInPage {
+            to { opacity: 1; }
+        }
+
+        @keyframes revealImage {
+            to { clip-path: inset(0 0 0 0); }
+        }
+
+        @keyframes slideUp {
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MOBILE VIEW */
+        @media (max-width: 768px) {
+            .wrapper { flex-direction: column; overflow-y: auto; }
+            .image-side { height: 40vh; clip-path: inset(100% 0 0 0); animation: revealImageMobile 1.5s forwards; }
+            .content-side { height: 60vh; }
+        }
+
+        @keyframes revealImageMobile {
+            to { clip-path: inset(0 0 0 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <section class="image-side">
+            <!-- Background Image via CSS -->
+        </section>
+
+        <section class="content-side">
+            <div class="inner-content">
+                <h1 id="greeting">Digital Wellington</h1>
+                <p>A Digital Marketer X Affliate Marketing Coach, Also a Front-End Web Developer; presents you:</p>
+                
+                <nav>
+                    <a href="bio.html" class="nav-link">
+                        Digital Wellington's Biography<span>⁉</span>
+                    </a>
+                    <a href="https://wellington210.github.io/PPOS_2.0/" class="nav-link">
+                        Get Started with Digital/Affiliate Marketing<span>💸</span>
+                    </a>
+                    <a href="https://wa.me/message/LIREBY5ACE4LD1" class="nav-link">
+                        Contact<span>📞</span>
+                    </a>
+                </nav>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Simple interactive greeting based on time of day
+        const greetingElement = document.getElementById('greeting');
+        const hour = new Date().getHours();
+        
+        if (hour < 12) {
+            greetingElement.innerText = "Good Morning.";
+        } else if (hour < 17) {
+            greetingElement.innerText = "Good Afternoon.";
+        } else {
+            greetingElement.innerText = "Good Evening.";
+        }
+
+        // Add a subtle parallax effect on mouse move for the image
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.05;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.05;
+            document.querySelector('.image-side').style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+        });
+    </script>
+</body>
+</html>
