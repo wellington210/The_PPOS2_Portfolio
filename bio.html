@@ -113,6 +113,69 @@
             margin: 40px 0;
         }
 
+        /* RIGHT SIDE - CONTENT */
+        .content-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: var(--bg-color);
+        }
+
+        .inner-content {
+            max-width: 400px;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUp 1s ease forwards 1.2s;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        p {
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* INTERACTIVE LINKS */
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+            transform: translateX(10px);
+            border-color: var(--text-main);
+        }
+
+        .nav-link span {
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
         /* SCROLL PROGRESS BAR */
         #progress {
             position: fixed;
@@ -193,9 +256,18 @@
         </div>
 
         <div class="story-block accent-block">
-            Click the "Get Started with Digital Marketing" button to see how i can help you achieve the same results.
+            Click the button below to see how i can help you achieve the same results.
         </div>
     </section>
+
+    <nav>
+        <a href="https://wa.me/message/LIREBY5ACE4LD1" class="nav-link">
+             Get Started with Digital Marketing<span>💸</span>
+        </a>
+        <a href="bio.html" class="nav-link">
+             Go Back<span>◀</span>
+        </a>
+    </nav>
 
     <script>
         // 1. SCROLL REVEAL LOGIC
